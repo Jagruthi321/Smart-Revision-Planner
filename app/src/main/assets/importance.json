@@ -1,0 +1,29 @@
+{
+  "physics": {
+    "phy_mechanics": "High",
+    "phy_thermodynamics": "High",
+    "phy_electromagnetism": "High",
+    "phy_optics": "Medium",
+    "phy_waves": "Medium",
+    "phy_modern_physics": "High"
+  },
+  "chemistry": {
+    "chem_physical": "High",
+    "chem_inorganic": "Medium",
+    "chem_organic": "High"
+  },
+  "mathematics": {
+    "math_calculus": "High",
+    "math_algebra": "High",
+    "math_trigonometry": "Medium",
+    "math_coordinate": "High",
+    "math_vectors": "Medium",
+    "math_probability": "Medium"
+  },
+  "biology": {
+    "bio_botany": "Medium",
+    "bio_zoology": "Medium",
+    "bio_genetics": "High",
+    "bio_ecology": "Low"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "physics": [
+    { "id": "phy_mechanics", "name": "Mechanics", "topicKeyword": "Classical mechanics" },
+    { "id": "phy_thermodynamics", "name": "Thermodynamics", "topicKeyword": "Thermodynamics" },
+    { "id": "phy_electromagnetism", "name": "Electromagnetism", "topicKeyword": "Electromagnetism" },
+    { "id": "phy_optics", "name": "Optics", "topicKeyword": "Optics" },
+    { "id": "phy_waves", "name": "Waves", "topicKeyword": "Wave physics" },
+    { "id": "phy_modern_physics", "name": "Modern Physics", "topicKeyword": "Modern physics" }
+  ],
+  "chemistry": [
+    { "id": "chem_physical", "name": "Physical Chemistry", "topicKeyword": "Physical chemistry" },
+    { "id": "chem_inorganic", "name": "Inorganic Chemistry", "topicKeyword": "Inorganic chemistry" },
+    { "id": "chem_organic", "name": "Organic Chemistry", "topicKeyword": "Organic chemistry" }
+  ],
+  "mathematics": [
+    { "id": "math_calculus", "name": "Calculus", "topicKeyword": "Calculus" },
+    { "id": "math_algebra", "name": "Algebra", "topicKeyword": "Algebra" },
+    { "id": "math_trigonometry", "name": "Trigonometry", "topicKeyword": "Trigonometry" },
+    { "id": "math_coordinate", "name": "Coordinate Geometry", "topicKeyword": "Coordinate geometry" },
+    { "id": "math_vectors", "name": "Vectors", "topicKeyword": "Vector mathematics" },
+    { "id": "math_probability", "name": "Probability", "topicKeyword": "Probability" }
+  ],
+  "biology": [
+    { "id": "bio_botany", "name": "Botany", "topicKeyword": "Botany" },
+    { "id": "bio_zoology", "name": "Zoology", "topicKeyword": "Zoology" },
+    { "id": "bio_genetics", "name": "Genetics", "topicKeyword": "Genetics" },
+    { "id": "bio_ecology", "name": "Ecology", "topicKeyword": "Ecology" }
+  ]
+}
