@@ -27,7 +27,7 @@ class ChapterRepository(private val chapterDao: ChapterDao) {
     suspend fun update(chapter: ChapterEntity) = chapterDao.update(chapter)
 
     suspend fun updateStatus(chapterId: String, status: ChapterStatus, timestamp: Long = System.currentTimeMillis()) =
-        chapterDao.updateStatus(chapterId, status, timestamp)
+        chapterDao.updateStatus(chapterId, status.name, timestamp)
 
     suspend fun getCompletedCount(): Int = chapterDao.getCompletedCount()
 
