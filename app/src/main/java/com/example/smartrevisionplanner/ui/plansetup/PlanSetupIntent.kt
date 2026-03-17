@@ -7,11 +7,11 @@ import com.example.smartrevisionplanner.domain.model.Subject
 import com.example.smartrevisionplanner.ui.mvi.MviIntent
 
 sealed interface PlanSetupIntent : MviIntent {
-    data object LoadSubjects : PlanSetupIntent
+    data object LoadSubjects : PlanSetupIntent  // keep this
+    // DELETE: data class LoadSubjects(val subjects: List<Subject>) : PlanSetupIntent
     data object LoadChaptersForSelectedSubjects : PlanSetupIntent
     data class SetExamDate(val dateMillis: Long) : PlanSetupIntent
     data class SetStudyHours(val hours: Float?) : PlanSetupIntent
-    data class LoadSubjects(val subjects: List<Subject>) : PlanSetupIntent
     data class ToggleSubject(val subject: Subject) : PlanSetupIntent
     data class LoadChapters(val chapters: List<ChapterMetadata>) : PlanSetupIntent
     data class ToggleChapter(val metadata: ChapterMetadata) : PlanSetupIntent

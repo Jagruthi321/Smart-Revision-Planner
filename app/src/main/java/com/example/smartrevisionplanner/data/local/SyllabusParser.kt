@@ -14,6 +14,8 @@ import java.io.InputStreamReader
  * Parses static JSON assets for subjects, chapters, and importance.
  * Provides offline-first syllabus data.
  */
+internal typealias ChaptersDto = Map<String, List<SyllabusParser.ChapterDto>>
+internal typealias ImportanceDto = Map<String, Map<String, String>>
 class SyllabusParser(private val context: Context) {
 
     private val gson = Gson()
@@ -57,8 +59,7 @@ class SyllabusParser(private val context: Context) {
 
     private data class SubjectDto(val id: String, val name: String)
 
-    private data class ChapterDto(val id: String, val name: String, val topicKeyword: String)
+    internal data class ChapterDto(val id: String, val name: String, val topicKeyword: String)
 
-    private typealias ChaptersDto = Map<String, List<ChapterDto>>
-    private typealias ImportanceDto = Map<String, Map<String, String>>
+
 }

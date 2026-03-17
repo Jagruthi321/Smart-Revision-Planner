@@ -48,47 +48,47 @@ fun PlanSetupScreen(
             startDestination = ROUTE_EXAM_DATE,
             modifier = Modifier.fillMaxSize()
         ) {
-        composable(ROUTE_EXAM_DATE) {
-            ExamDateScreen(
-                examDateMillis = state.examDateMillis,
-                studyHoursPerDay = state.studyHoursPerDay,
-                onExamDateChange = { viewModel.sendIntent(PlanSetupIntent.SetExamDate(it)) },
-                onStudyHoursChange = { viewModel.sendIntent(PlanSetupIntent.SetStudyHours(it)) },
-                onNext = { navController.navigate(ROUTE_SUBJECTS) }
-            )
-        }
-        composable(ROUTE_SUBJECTS) {
-            SubjectSelectionScreen(
-                subjects = state.allSubjects,
-                selectedSubjects = state.selectedSubjects,
-                onToggleSubject = { viewModel.sendIntent(PlanSetupIntent.ToggleSubject(it)) },
-                onNext = { navController.navigate(ROUTE_CHAPTERS) },
-                onBack = { navController.popBackStack() }
-            )
-        }
-        composable(ROUTE_CHAPTERS) {
-            LaunchedEffect(Unit) {
-                viewModel.sendIntent(PlanSetupIntent.LoadChaptersForSelectedSubjects)
+            composable(ROUTE_EXAM_DATE) {
+                ExamDateScreen(
+                    examDateMillis = state.examDateMillis,
+                    studyHoursPerDay = state.studyHoursPerDay,
+                    onExamDateChange = { viewModel.sendIntent(PlanSetupIntent.SetExamDate(it)) },
+                    onStudyHoursChange = { viewModel.sendIntent(PlanSetupIntent.SetStudyHours(it)) },
+                    onNext = { navController.navigate(ROUTE_SUBJECTS) }
+                )
             }
-            ChapterSelectionScreen(
-                chapters = state.allChapters,
-                selectedChapters = state.selectedChapters.keys,
-                onToggleChapter = { viewModel.sendIntent(PlanSetupIntent.ToggleChapter(it)) },
-                onNext = { navController.navigate(ROUTE_DIFFICULTY) },
-                onBack = { navController.popBackStack() }
-            )
+            composable(ROUTE_SUBJECTS) {
+                SubjectSelectionScreen(
+                    subjects = state.allSubjects,
+                    selectedSubjects = state.selectedSubjects,
+                    onToggleSubject = { viewModel.sendIntent(PlanSetupIntent.ToggleSubject(it)) },
+                    onNext = { navController.navigate(ROUTE_CHAPTERS) },
+                    onBack = { navController.popBackStack() }
+                )
+            }
+            composable(ROUTE_CHAPTERS) {
+                LaunchedEffect(Unit) {
+                    viewModel.sendIntent(PlanSetupIntent.LoadChaptersForSelectedSubjects)
+                }
+                ChapterSelectionScreen(
+                    chapters = state.allChapters,
+                    selectedChapters = state.selectedChapters.keys,
+                    onToggleChapter = { viewModel.sendIntent(PlanSetupIntent.ToggleChapter(it)) },
+                    onNext = { navController.navigate(ROUTE_DIFFICULTY) },
+                    onBack = { navController.popBackStack() }
+                )
+            }
+            composable(ROUTE_DIFFICULTY) {
+                DifficultyAssignmentScreen(
+                    selectedChapters = state.selectedChaptersList,
+                    chapterDifficulties = state.selectedChapters,
+                    onDifficultyChange = { meta, diff ->
+                        viewModel.sendIntent(PlanSetupIntent.SetChapterDifficulty(meta, diff))
+                    },
+                    onGenerate = { viewModel.sendIntent(PlanSetupIntent.GeneratePlan) },
+                    onBack = { navController.popBackStack() },
+                    isGenerating = state.isGenerating
+                )
+            }
         }
-        composable(ROUTE_DIFFICULTY) {
-            DifficultyAssignmentScreen(
-                selectedChapters = state.selectedChaptersList,
-                chapterDifficulties = state.selectedChapters,
-                onDifficultyChange = { meta, diff ->
-                    viewModel.sendIntent(PlanSetupIntent.SetChapterDifficulty(meta, diff))
-                },
-                onGenerate = { viewModel.sendIntent(PlanSetupIntent.GeneratePlan) },
-                onBack = { navController.popBackStack() },
-                isGenerating = state.isGenerating
-            )
-        }
-    }
-}
+    }}

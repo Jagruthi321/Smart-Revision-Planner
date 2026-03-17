@@ -12,6 +12,6 @@ data class ChapterSelection(
     val subject: String get() = metadata.subject
     val topicKeyword: String get() = metadata.topicKeyword
     val importance: Importance get() = metadata.importance
-    val difficultyWeight: Int get() = difficulty.weight
-    val estimatedHours: Float get() = difficulty.weight.toFloat()
+    val difficultyWeight: Int get() = difficulty.weight()
+    val estimatedHours: Float get() = difficulty.weight().toFloat()
 }

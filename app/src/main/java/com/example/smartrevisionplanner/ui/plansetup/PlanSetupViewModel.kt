@@ -11,7 +11,7 @@ import com.example.smartrevisionplanner.ui.mvi.MviViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-
+import androidx.lifecycle.viewModelScope
 class PlanSetupViewModel(
     private val syllabusRepository: SyllabusRepository,
     private val generateAndSavePlanUseCase: GenerateAndSavePlanUseCase,
@@ -42,9 +42,6 @@ class PlanSetupViewModel(
             is PlanSetupIntent.SetStudyHours -> updateState {
                 it.copy(studyHoursPerDay = intent.hours)
             }
-            is PlanSetupIntent.LoadSubjects -> updateState {
-                it.copy(allSubjects = intent.subjects)
-            }
             is PlanSetupIntent.ToggleSubject -> updateState {
                 val newSelected = if (intent.subject in it.selectedSubjects) {
                     it.selectedSubjects - intent.subject
@@ -70,9 +67,7 @@ class PlanSetupViewModel(
             is PlanSetupIntent.SetChapterDifficulty -> updateState {
                 if (intent.metadata in it.selectedChapters) {
                     it.copy(selectedChapters = it.selectedChapters + (intent.metadata to intent.difficulty))
-                } else {
-                    it
-                }
+                } else it
             }
             PlanSetupIntent.GeneratePlan -> generateAndSavePlan()
             is PlanSetupIntent.PlanSaved -> updateState {
@@ -83,7 +78,6 @@ class PlanSetupViewModel(
             }
         }
     }
-
     private fun generateAndSavePlan() {
         val currentState = state.value
         val examDate = currentState.examDateMillis

@@ -34,10 +34,10 @@ interface ChapterDao {
     fun getChaptersInDateRange(startMillis: Long, endMillis: Long): Flow<List<ChapterEntity>>
 
     @Query("SELECT * FROM chapters WHERE status = :status")
-    fun getChaptersByStatus(status: ChapterStatus): Flow<List<ChapterEntity>>
+    fun getChaptersByStatus(status: String): Flow<List<ChapterEntity>>
 
     @Query("UPDATE chapters SET status = :status, completionTimestamp = :timestamp WHERE id = :chapterId")
-    suspend fun updateStatus(chapterId: String, status: ChapterStatus, timestamp: Long = System.currentTimeMillis())
+    suspend fun updateStatus(chapterId: String, status: String, timestamp: Long)
 
     @Query("DELETE FROM chapters")
     suspend fun deleteAll()
